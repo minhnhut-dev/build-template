@@ -84,6 +84,7 @@ export default function ContractPage() {
               selectedRow={selectedRow}
               onSelectRow={setSelectedRow}
               onValueChange={handleContractValueChange}
+              activeFileType={activeFileType}
             />
           </div>
 
