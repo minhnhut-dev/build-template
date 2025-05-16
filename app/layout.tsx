@@ -8,9 +8,9 @@ import { Toaster } from "@/components/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Contract Data Viewer",
+  title: "Template create data",
   description: "View and manage contract data",
-    generator: 'v0.dev'
+    generator: 'NhutPM'
 }
 
 export default function RootLayout({
