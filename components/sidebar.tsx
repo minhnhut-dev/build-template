@@ -3,8 +3,9 @@
 import type React from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { FileText, ShoppingCart, Database, Receipt, ChevronLeft, ChevronRight } from "lucide-react"
+import { FileText, Home, ChevronLeft, ChevronRight } from "lucide-react"
 import type { SectionType } from "@/lib/types"
+import { useRouter } from "next/navigation"
 
 interface SidebarProps {
   isCollapsed: boolean
@@ -25,6 +26,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed, activeItem, onNav
       title: "Contract",
       icon: <FileText className="h-5 w-5" />,
       href: "#",
+
     },
     // {
     //   title: "POH",
@@ -42,6 +44,8 @@ export default function Sidebar({ isCollapsed, setIsCollapsed, activeItem, onNav
     //   href: "#",
     // },
   ]
+  
+  const router = useRouter()
 
   return (
     <div
@@ -52,7 +56,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed, activeItem, onNav
     >
       {/* Sidebar Header */}
       <div className="flex items-center justify-between p-4 border-b border-slate-700">
-        {!isCollapsed && <h1 className="text-xl font-bold">Supply Chain</h1>}
+        {!isCollapsed && <a href="#" onClick={() => router.push("/")}><h1 className="text-xl font-bold" >Supply Chain</h1></a>}
         <Button
           variant="ghost"
           size="icon"

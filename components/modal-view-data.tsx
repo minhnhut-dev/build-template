@@ -3,11 +3,12 @@ import React from "react";
 interface ViewDataModalProps {
   open: boolean;
   onClose: () => void;
-  data: Record<string, any> | null;
+  data: Record<string, any> | Record<string, any>[] | null;
 }
 
 export default function ViewDataModal({ open, onClose, data }: ViewDataModalProps) {
   if (!open || !data) return null;
+  const isArray = Array.isArray(data);
 
   return (
     <div
@@ -46,18 +47,48 @@ export default function ViewDataModal({ open, onClose, data }: ViewDataModalProp
           </svg>
           <span className="sr-only">Close modal</span>
         </button>
-        <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-center">View Data</h2>
+        <h2 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-center">
+          View Data
+        </h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-200 text-xs sm:text-sm">
-            <tbody>
-              {Object.entries(data).map(([key, value]) => (
-                <tr key={key} className="border-b last:border-b-0">
-                  <td className="py-2 px-2 sm:py-2 sm:px-4 font-medium text-gray-700 bg-gray-50 w-1/3">{key}</td>
-                  <td className="py-2 px-2 sm:py-2 sm:px-4 text-gray-900 break-all">{String(value)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {isArray ? (
+            (data as Record<string, any>[]).map((block, idx) => (
+              <div key={idx} className="mb-8 border border-gray-300 rounded-lg shadow-sm">
+                <div className="bg-gray-100 px-4 py-2 font-semibold text-gray-700 rounded-t-lg">
+                  Block {idx + 1}
+                </div>
+                <table className="min-w-full border border-gray-200 text-xs sm:text-sm">
+                  <tbody>
+                    {Object.entries(block).map(([key, value]) => (
+                      <tr key={key} className="border-b last:border-b-0">
+                        <td className="py-2 px-2 sm:py-2 sm:px-4 font-medium text-gray-700 bg-gray-50 w-1/3">
+                          {key}
+                        </td>
+                        <td className="py-2 px-2 sm:py-2 sm:px-4 text-gray-900 break-all">
+                          {String(value)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))
+          ) : (
+            <table className="min-w-full border border-gray-200 text-xs sm:text-sm">
+              <tbody>
+                {Object.entries(data).map(([key, value]) => (
+                  <tr key={key} className="border-b last:border-b-0">
+                    <td className="py-2 px-2 sm:py-2 sm:px-4 font-medium text-gray-700 bg-gray-50 w-1/3">
+                      {key}
+                    </td>
+                    <td className="py-2 px-2 sm:py-2 sm:px-4 text-gray-900 break-all">
+                      {String(value)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

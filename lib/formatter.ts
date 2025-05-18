@@ -1,25 +1,38 @@
 import type { ContractDataType, PODataType, DataType } from "./types"
 
-export function formatAsPipeDelimited(data: DataType): string[] {
+export function formatAsPipeDelimited(data: DataType, duplicateCount: number = 5): string[] {
   if ("Action" in data) {
-    // This is contract data
-    const contractData = data as ContractDataType
-    // Format the data into pipe-delimited strings similar to the example (HL7 format)
-    const lines = [
-      `MSH|^~\\&|SupplyChain|MCKESSON|||20140502064957||MFN^M18^MFN_M18|15335234|P|2.9`,
-      `MFI|CTR||UPD|||NE`,
-      `MFE|MAD|000000014||2802_110|E||20140502064957924||`,
-      `CTR|${contractData["Contract Number"]}|${contractData["GPO ID"]}|${contractData["Status"]}|${contractData["Contract Start Date"]}|${contractData["Contract End Date"]}||751|L||||${contractData["GPO ID"]}|${contractData["GPO Name"]}||||||${contractData["Supplier Type"]}|||1||`,
-      `ITM|${contractData["Org Item ID"]}|${contractData["Original Item Desc"]}`,
-      `|A|||||${contractData["MFR ID"]}|${contractData["MFR Name"]}|${contractData["MFR Item ID"]}||||||||||||||||||||||||||${contractData["Contract Item Start Date"]}|${contractData["Contract Item End Date"]}||`,
-      `VND|1|${contractData["Vendor ID"]}|${contractData["Vendor Name"]}|${contractData["Vendor Item ID"]}||${contractData["Corp Number"]}^47507^||||||||${contractData["Contract Item Start Date"]}|${contractData["Contract Item End Date"]}||`,
-      `PKG|1|${contractData["Contract UOM"]}||||||||${contractData["Contract Price"]}|1|${contractData["Vendor Item ID"]}`,
-    ]
-    return lines
+    const contractData = data as ContractDataType;
+     const highlightedFields: (keyof ContractDataType)[] = [
+      "MFR Item ID",
+      "Vendor Item ID",
+      "MFR Name",
+      "Contract Number"
+    ];
+
+    let blocks: string[] = [];
+    for (let i = 1; i <= duplicateCount; i++) {
+      const modifiedData = { ...contractData };
+      highlightedFields.forEach((field) => {
+        modifiedData[field] =
+          contractData[field] + (duplicateCount > 1 ? ` ${i}` : "");
+      });
+
+      const lines = [
+        `MSH|^~\\&|SupplyChain|MCKESSON|||20140502064957||MFN^M18^MFN_M18|15335234|P|2.9`,
+        `MFI|CTR||UPD|||NE`,
+        `MFE|MAD|000000014||2802_110|E||20140502064957924||`,
+        `CTR|${modifiedData["Contract Number"]}|${modifiedData["GPO ID"]}|${modifiedData["Status"]}|${modifiedData["Contract Start Date"]}|${modifiedData["Contract End Date"]}||751|L||||${modifiedData["GPO ID"]}|${modifiedData["GPO Name"]}||||||${modifiedData["Supplier Type"]}|||1||`,
+        `ITM|${modifiedData["Org Item ID"]}|${modifiedData["Original Item Desc"]}`,
+        `|A|||||${modifiedData["MFR ID"]}|${modifiedData["MFR Name"]}|${modifiedData["MFR Item ID"]}||||||||||||||||||||||||||${modifiedData["Contract Item Start Date"]}|${modifiedData["Contract Item End Date"]}||`,
+        `VND|1|${modifiedData["Vendor ID"]}|${modifiedData["Vendor Name"]}|${modifiedData["Vendor Item ID"]}||${modifiedData["Corp Number"]}^47507^||||||||${modifiedData["Contract Item Start Date"]}|${modifiedData["Contract Item End Date"]}||`,
+        `PKG|1|${modifiedData["Contract UOM"]}||||||||${modifiedData["Contract Price"]}|1|${modifiedData["Vendor Item ID"]}`,
+      ];
+      blocks.push(lines.join("\n"));
+    }
+    return blocks.join("\n").split("\n");
   } else {
-    // This is PO data
-    const poData = data as PODataType
-    // Format PO data in HL7-like format
+    const poData = data as PODataType;
     const lines = [
       `MSH|^~\\&|SupplyChain|MCKESSON|||20250401||MFN^M18^MFN_M18|15335234|P|2.9`,
       `MFI|PO||UPD|||NE`,
@@ -30,10 +43,11 @@ export function formatAsPipeDelimited(data: DataType): string[] {
       `MFR|${poData["MFR ID"]}|${poData["Item MFR Name"]}|${poData["Item MFR Item ID"]}`,
       `GL|${poData["GL"]}`,
       `RCV|${poData["Received Qty"]}`,
-    ]
-    return lines
+    ];
+    return lines;
   }
 }
+
 
 export function formatAsX12(data: DataType): string[] {
   if ("Action" in data) {

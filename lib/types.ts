@@ -44,4 +44,4 @@ export type PODataType = {
 
 export type DataType = ContractDataType | PODataType
 
-export type SectionType = "Contract" | "POH" | "Item Master" | "Invoice"
+export type SectionType = "Home" |"Contract" | "POH" | "Item Master" | "Invoice"
