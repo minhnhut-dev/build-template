@@ -3,7 +3,7 @@
 import type React from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { FileText, Home, ChevronLeft, ChevronRight } from "lucide-react"
+import { FileText, Home, ChevronLeft, ChevronRight, ShoppingCart, Database, Receipt } from "lucide-react"
 import type { SectionType } from "@/lib/types"
 import { useRouter } from "next/navigation"
 
@@ -42,7 +42,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed, activeItem, onNav
     //   title: "Invoice",
     //   icon: <Receipt className="h-5 w-5" />,
     //   href: "#",
-    // },
+    // }
   ]
   
   const router = useRouter()

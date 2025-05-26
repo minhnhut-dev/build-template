@@ -42,6 +42,11 @@ export type PODataType = {
   "Received Qty": string
 }
 
+export type IMDataType = {
+  "Vendor ID": string
+  "Vendor Name": string
+}
+
 export type DataType = ContractDataType | PODataType
 
 export type SectionType = "Home" |"Contract" | "POH" | "Item Master" | "Invoice"

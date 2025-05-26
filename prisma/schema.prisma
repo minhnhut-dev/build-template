@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FileType {
+  id        Int         @id @default(autoincrement())
+  name      String      @unique // file type: Contract, POH, IM, Invoice
+  status    Boolean
+  builds    FileBuild[]
+}
+
+model FileBuild {
+  id             Int      @id @default(autoincrement())
+  fileName       String
+  numbers_created Int
+  fileTypeId     Int
+  fileType       FileType @relation(fields: [fileTypeId], references: [id])
+}

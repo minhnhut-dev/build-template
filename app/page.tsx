@@ -36,7 +36,7 @@ export default function Home() {
 
   // Animate stats on page load
   useEffect(() => {
-    const targetStats = { contracts: 152, items: 3847, orders: 267, invoices: 98 }
+    const targetStats = { contracts: 0, items: 0, orders: 0, invoices: 0 }
     const duration = 2000 // ms
     const frameDuration = 16 // ~60fps
     const steps = duration / frameDuration
@@ -154,7 +154,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <div
+              {/* <div
                 className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition-all cursor-pointer group"
                 onClick={() => router.push("/poh")}
               >
@@ -212,7 +212,7 @@ export default function Home() {
                     <span className="text-xs py-1 px-2 bg-amber-100 text-amber-700 rounded-full">{animatedStats.invoices} open</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 

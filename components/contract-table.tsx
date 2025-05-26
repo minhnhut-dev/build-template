@@ -79,7 +79,7 @@ export default function ContractTable({
     console.log(`Formatting data as: ${activeFileType}`);
     switch (activeFileType) {
       case "HL7":
-        return formatAsPipeDelimited(data, duplicateOption === "Normal" ? 5 : duplicateOption);
+        return formatAsPipeDelimited(data, duplicateOption === "Normal" ? 15000 : duplicateOption);
       case "x12850":
         return formatAsX12(data);
       case "Tabular":
@@ -108,10 +108,10 @@ export default function ContractTable({
             onChange={handleDuplicateChange}
           >
             <option value="Normal">Normal</option>
-            <option value="Duplicate-10">Duplicate 10k lines</option>
-            <option value="Duplicate-50">Duplicate 50k lines</option>
-            <option value="Duplicate-100">Duplicate 100k lines</option>
-            <option value="Duplicate-200">Duplicate 200k lines</option>
+            <option value="Duplicate-10">Create 10k lines</option>
+            <option value="Duplicate-50">Create 50k lines</option>
+            <option value="Duplicate-100">Create 100k lines</option>
+            <option value="Duplicate-200">Create 200k lines</option>
           </select>
          
         </form>

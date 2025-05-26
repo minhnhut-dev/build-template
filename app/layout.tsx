@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Template create data",
   description: "View and manage contract data",
-    generator: 'NhutPM'
+  generator: 'NhutPM',
+  icons: "./favicon.ico"
 }
 
 export default function RootLayout({
