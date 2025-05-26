@@ -18,7 +18,7 @@ model FileType {
   id     Int         @id @default(autoincrement())
   name   String      @unique // file type: Contract, POH, IM, Invoice
   status Boolean
-  builds FileBuild[] // <--- quan hệ 1-n: 1 FileType có nhiều FileBuild
+  builds FileBuild[]
 }
 
 model FileBuild {

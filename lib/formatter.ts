@@ -7,7 +7,6 @@ export function formatAsPipeDelimited(data: DataType, duplicateCount: number = 5
       "MFR Item ID",
       "Vendor Item ID",
       "MFR Name",
-      "Contract Number"
     ];
 
     let blocks: string[] = [];

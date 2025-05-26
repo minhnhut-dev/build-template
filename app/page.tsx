@@ -73,7 +73,7 @@ export default function Home() {
         <div className="p-6 flex-1 overflow-y-auto">
           {/* Header Section */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Supply Chain Data Viewer</h1>
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">Supply Chain Data builder</h1>
             <p className="text-lg text-gray-600">
               Welcome to your comprehensive supply chain management dashboard
             </p>
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500 hover:shadow-lg transition-all">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-500">Active Contracts</p>
+                  <p className="text-sm font-medium text-gray-500">Number of Contract files created</p>
                   <p className="text-2xl font-bold text-gray-800">{animatedStats.contracts}</p>
                 </div>
                 <div className="bg-blue-100 p-3 rounded-lg">
@@ -93,7 +93,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500 hover:shadow-lg transition-all">
+            {/* <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500 hover:shadow-lg transition-all">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-500">Items Managed</p>
@@ -127,7 +127,7 @@ export default function Home() {
                   <BarChart2 className="h-6 w-6 text-amber-500" />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Access Links */}
@@ -146,10 +146,9 @@ export default function Home() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-800">Contract</h3>
                   </div>
-                  <p className="text-gray-600 mb-4">View and manage contract data with expiration alerts and renewal tracking</p>
+                  <p className="text-gray-600 mb-4">View and manage contract data</p>
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-blue-500">Access now</span>
-                    <span className="text-xs py-1 px-2 bg-blue-100 text-blue-700 rounded-full">{animatedStats.contracts} active</span>
                   </div>
                 </div>
               </div>

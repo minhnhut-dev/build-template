@@ -46,14 +46,13 @@ export default function ContractPage() {
   }
 
   const handleFileTypeChange = (fileType: FileType) => {
-    console.log(`Setting file type to: ${fileType}`)
     setActiveFileType(fileType)
   }
 
   const getFileTypeOptions = () => {
     return [
       { value: "HL7", label: "File type: HL7" },
-      { value: "Tabular", label: "Tabular in tab form" },
+      // { value: "Tabular", label: "Tabular in tab form" },
     ]
   }
 

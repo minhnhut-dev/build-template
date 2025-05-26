@@ -59,7 +59,7 @@ export default function TutorialPage() {
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 py-6 px-8">
               <h1 className="text-2xl md:text-3xl font-bold text-white">
-                Hướng dẫn tạo file HL7 Contract tự động
+                Hướng dẫn tạo file HL7 Contract
               </h1>
               <p className="text-blue-100 mt-2">
                 Trang này giúp bạn dễ dàng tạo file contract HL7 với các tuỳ chọn{" "}
@@ -88,7 +88,9 @@ export default function TutorialPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Contract Number
+                              <span className="bg-yellow-100 px-2 py-0.5 rounded border border-yellow-300 mr-1">
+                              Contract Number                              
+                              </span>
                             </label>
                             <input
                               type="text"
@@ -125,16 +127,6 @@ export default function TutorialPage() {
                               defaultValue="VCN10102000NHUTPM"
                             />
                           </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Ngày hiệu lực
-                            </label>
-                            <input
-                              type="date"
-                              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-blue-500 focus:border-blue-500"
-                              defaultValue="2025-04-10"
-                            />
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -153,7 +145,7 @@ export default function TutorialPage() {
                   </div>
                   <div className="flex-1">
                     <h2 className="text-xl font-semibold text-blue-800 mb-3">
-                      Chọn loại file xuất và số lượng Duplicate
+                      Chọn loại file xuất và số lượng item cần tạo
                     </h2>
                     <div className="flex flex-wrap gap-4 mb-4">
                       <div className="w-full sm:w-auto">
@@ -166,22 +158,24 @@ export default function TutorialPage() {
                           className="w-full sm:w-auto min-w-[150px] bg-white border border-gray-300 rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         >
                           <option value="HL7">HL7</option>
-                          <option value="X12">X12</option>
+                          <option value="X12">X12850</option>
+                          <option value="Tabular">Tabular</option>
                         </select>
                       </div>
                       <div className="w-full sm:w-auto">
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Số lượng duplicate
+                          Số lượng item
                         </label>
                         <select
                           value={duplicateCount}
                           onChange={(e) => setDuplicateCount(e.target.value)}
                           className="w-full sm:w-auto min-w-[200px] bg-white border border-gray-300 rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         >
-                          <option value="1">Normal (1 block)</option>
-                          <option value="10">Duplicate 10</option>
-                          <option value="100">Duplicate 100</option>
-                          <option value="1000">Duplicate 1000</option>
+                           <option value="Normal">Normal</option>
+                          <option value="Create-10k">Create 10k item</option>
+                          <option value="Create-50k">Create 50k item</option>
+                          <option value="Create-100k">Create 100k item</option>
+                          <option value="Create-200k">Create 200k item</option>
                         </select>
                       </div>
                     </div>
@@ -280,13 +274,13 @@ export default function TutorialPage() {
                   <ul className="text-gray-700 space-y-2 pl-6 list-disc">
                     <li>Bạn có thể sử dụng chức năng copy nhanh nội dung để chỉnh sửa thêm.</li>
                     <li>Xem trước dữ liệu dạng bảng để kiểm tra tất cả các trường trước khi xuất file.</li>
-                    <li>Khi duplicate số lượng lớn, nên xem trước để đảm bảo không có lỗi.</li>
+                    <li>Khi tạo số lượng lớn, nên xem trước để đảm bảo không có lỗi.</li>
                   </ul>
                 </div>
                 <div className="text-center text-gray-500 text-xs mt-6">
-                  Giao diện này được xây dựng với{" "}
-                  <span className="font-bold">Next.js</span> và{" "}
-                  <span className="font-bold">TailwindCSS</span>.
+                  Giao diện này được xây dựng bởi{" "}
+                  <span className="font-bold">NhutPM</span> và{" "}
+                  <span className="font-bold">NextJS + TailwindCSS</span>.
                 </div>
               </div>
             </div>

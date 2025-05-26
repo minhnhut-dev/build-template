@@ -12,6 +12,7 @@ import {
   formatAsTabularDelimited,
 } from "@/lib/formatter";
 
+import { formatNumberShort } from "../constants/FormatData"
 interface ContractTableProps {
   data: DataType;
   selectedRow: number | null;
@@ -30,8 +31,6 @@ export default function ContractTable({
   const highlightedFields = [
     "MFR Item ID",
     "Vendor Item ID",
-    "MFR Name",
-    "Contract Number",
   ];
   const [editingCell, setEditingCell] = useState<string | null>(null);
 
@@ -41,10 +40,11 @@ export default function ContractTable({
 
   const handleDuplicateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
+    console.log("value options: ", val)
     if (val === "Normal") setDuplicateOption("Normal");
     else
       setDuplicateOption(
-        Number(val.replace("Duplicate-", "").replace("k", "000"))
+        Number(val.replace("Create-", "").replace("k", "000"))
       );
   };
 
@@ -79,7 +79,7 @@ export default function ContractTable({
     console.log(`Formatting data as: ${activeFileType}`);
     switch (activeFileType) {
       case "HL7":
-        return formatAsPipeDelimited(data, duplicateOption === "Normal" ? 15000 : duplicateOption);
+        return formatAsPipeDelimited(data, duplicateOption === "Normal" ? 1 : duplicateOption);
       case "x12850":
         return formatAsX12(data);
       case "Tabular":
@@ -103,15 +103,15 @@ export default function ContractTable({
             value={
               duplicateOption === "Normal"
                 ? "Normal"
-                : `Duplicate-${duplicateOption}k`
+                : `Create-${formatNumberShort(duplicateOption)}`
             }
             onChange={handleDuplicateChange}
           >
             <option value="Normal">Normal</option>
-            <option value="Duplicate-10">Create 10k lines</option>
-            <option value="Duplicate-50">Create 50k lines</option>
-            <option value="Duplicate-100">Create 100k lines</option>
-            <option value="Duplicate-200">Create 200k lines</option>
+            <option value="Create-10k">Create 10k item</option>
+            <option value="Create-50k">Create 50k item</option>
+            <option value="Create-100k">Create 100k item</option>
+            <option value="Create-200k">Create 200k item</option>
           </select>
          
         </form>
