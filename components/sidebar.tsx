@@ -3,7 +3,7 @@
 import type React from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { FileText, Home, ChevronLeft, ChevronRight, ShoppingCart, Database, Receipt } from "lucide-react"
+import { FileText, ChevronLeft, ChevronRight, Database } from "lucide-react"
 import type { SectionType } from "@/lib/types"
 import { useRouter } from "next/navigation"
 
@@ -27,6 +27,11 @@ export default function Sidebar({ isCollapsed, setIsCollapsed, activeItem, onNav
       icon: <FileText className="h-5 w-5" />,
       href: "#",
 
+    },
+    {
+      title: "Item Master",
+      icon: <Database className="h-5 w-5" />,
+      href: "/item-master",
     },
     // {
     //   title: "POH",

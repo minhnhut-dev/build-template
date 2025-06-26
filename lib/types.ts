@@ -45,8 +45,22 @@ export type PODataType = {
 export type IMDataType = {
   "Vendor ID": string
   "Vendor Name": string
+  "Vendor Item ID": string
+  "Org Item ID": string
+  "Item Desc": string
+  "MFR ID": string
+  "MFR Name": string
+  "MFR Item ID": string
+  "UOM": string
+  "QOE": string
+  "Price": string
+  "Corp Number": string
+  "Corp Name": string
+  "Expense Code Number": string
+  "Expense Code Name": string
+  "Location ID": string
 }
 
-export type DataType = ContractDataType | PODataType
+export type DataType = ContractDataType | PODataType | IMDataType
 
 export type SectionType = "Home" |"Contract" | "POH" | "Item Master" | "Invoice"

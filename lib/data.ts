@@ -1,4 +1,4 @@
-import type { ContractDataType, PODataType } from "./types"
+import type { ContractDataType, PODataType, IMDataType } from "./types"
 
 export const contractData: ContractDataType = {
   Action: "MAD",
@@ -42,4 +42,23 @@ export const poData: PODataType = {
   GL: "299-95001731-8303200",
   "Original Item Desc": "New item 2",
   "Received Qty": "9",
+}
+
+export const itemMasterData: IMDataType = {
+  "Vendor ID": "91",
+  "Vendor Name": "ACCUTOME INC",
+  "Vendor Item ID": "250424015A",
+  "Org Item ID": "ITM250424015",
+  "Item Desc": "Item 250424015",
+  "MFR ID": "1319",
+  "MFR Name": "WILLIS PRINTING",
+  "MFR Item ID": "250424015B",
+  "UOM": "EA",
+  "QOE": "1",
+  "Price": "50",
+  "Corp Number": "10",
+  "Corp Name": "TIFT REGIONAL MED CENTER",
+  "Expense Code Number": "70290",
+  "Expense Code Name": "CONTRACT PERSONNEL",
+  "Location ID": "2087"
 }

@@ -15,21 +15,19 @@ interface ModalCreateFileProps {
 const schema = yup.object({
   fileName: yup
     .string()
-    .required("Tên file không được để trống")
+    .required("File name cannot be empty")
     .matches(
       /^[a-zA-Z0-9._-]+$/,
-      "Tên file chỉ được chứa chữ cái, số và ký tự đặc biệt . _ -"
+      "File name can only contain letters, numbers, and special characters . _ -"
     )
-    .max(100, "Tên file không được vượt quá 100 ký tự")
+    .max(100, "File name cannot exceed 100 characters")
 }).required();
 
-// Định nghĩa kiểu dữ liệu form
 type FormValues = {
   fileName: string;
 };
 
 export default function ModalCreateFile({ typeFile, open, onClose, data }: ModalCreateFileProps) {
-  // Khởi tạo react-hook-form với resolver yup
   const {
     register,
     handleSubmit,
@@ -51,10 +49,9 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
       .join("\n");
   }
 
-  // Xử lý khi submit form thành công
   const onSubmit = (formData: FormValues) => {
-    const text = (data);
-    const blob = new Blob([text], { type: "text/plain" });
+    const text = data;
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement("a");
@@ -66,8 +63,8 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
     URL.revokeObjectURL(url);
 
     toast({
-      title: "Đã tạo file thành công",
-      description: "Nội dung đã được tạo thành file!",
+      title: "File created successfully",
+      description: "Content has been created as a file!",
       duration: 2000,
     }); 
     
@@ -82,7 +79,7 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
           <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Tạo file
+                Create file
               </h3>
               <button
                 type="button"
@@ -104,7 +101,7 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                   />
                 </svg>
-                <span className="sr-only">Đóng modal</span>
+                <span className="sr-only">Close modal</span>
               </button>
             </div>
             <div className="p-4 md:p-5">
@@ -119,7 +116,7 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
                 }}
               >
                 <div>
-                  <label htmlFor="fileName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên file</label>
+                  <label htmlFor="fileName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File name</label>
                   <input
                     {...register("fileName")}
                     type="text"
@@ -127,7 +124,7 @@ export default function ModalCreateFile({ typeFile, open, onClose, data }: Modal
                     className={`bg-gray-50 border ${
                       errors.fileName ? "border-red-500" : "border-gray-300"
                     } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white`}
-                    placeholder="CONTRACT2025042301.AHN200728LOCAL.GPONV.txt"
+                    placeholder=""
                     autoFocus
                   />
                   {errors.fileName && (

@@ -1,4 +1,4 @@
-import type { ContractDataType, PODataType, DataType } from "./types"
+import type { ContractDataType, PODataType, DataType, IMDataType } from "./types"
 
 export function formatAsPipeDelimited(data: DataType, duplicateCount: number = 5): string[] {
   if ("Action" in data) {
@@ -26,10 +26,11 @@ export function formatAsPipeDelimited(data: DataType, duplicateCount: number = 5
         `VND|1|${modifiedData["Vendor ID"]}|${modifiedData["Vendor Name"]}|${modifiedData["Vendor Item ID"]}||${modifiedData["Corp Number"]}^47507^||||||||${modifiedData["Contract Item Start Date"]}|${modifiedData["Contract Item End Date"]}||`,
         `PKG|1|${modifiedData["Contract UOM"]}||||||||${modifiedData["Contract Price"]}|1|${modifiedData["Vendor Item ID"]}`,
       ];
-      blocks.push(lines.join("\n"));
+      blocks.push(lines.join("\r\n"));
     }
-    return blocks.join("\n").split("\n");
-  } else {
+    return blocks.join("\r\n").split("\r\n");
+  }
+   else {
     const poData = data as PODataType;
     const lines = [
       `MSH|^~\\&|SupplyChain|MCKESSON|||20250401||MFN^M18^MFN_M18|15335234|P|2.9`,
@@ -46,11 +47,41 @@ export function formatAsPipeDelimited(data: DataType, duplicateCount: number = 5
   }
 }
 
+export function formatAsItemMaster(data: DataType, duplicateCount: number = 1, usePeopleSoft: boolean = false): string[] {
+  const item = data as IMDataType;
+  const highlightedFields: (keyof IMDataType)[] = [
+    "Vendor Item ID",
+    "Org Item ID", 
+    "MFR Item ID"
+  ];
+
+  let blocks: string[] = [];
+  for (let i = 1; i <= duplicateCount; i++) {
+    const modifiedData = { ...item };
+    highlightedFields.forEach((field) => {
+      modifiedData[field] =
+        item[field] + (i > 1 ? `-${i}` : "");
+    });
+
+    const baseLines = [
+      `MSH|^~\\&amp;|SupplyChain|send facility|||541750311414||MFN^MAD|1549478123|P|2.2`,
+      `ZIT|${modifiedData["Vendor ID"]}^${modifiedData["Vendor Item ID"]}^${modifiedData["Price"]}^${modifiedData["UOM"]}|${modifiedData["QOE"]}|||${modifiedData["Item Desc"]}|||||||EA^${modifiedData["QOE"]}^${modifiedData["Price"]}^${modifiedData["Vendor Item ID"]}^|${modifiedData["MFR ID"]}|${modifiedData["MFR Item ID"]}|||||0001|4.2540|||||||||${modifiedData["Org Item ID"]}|||N|IMPLANT|${modifiedData["Org Item ID"]}||${modifiedData["Vendor Name"]}||||||U|N||${modifiedData["MFR Name"]}||${modifiedData["Corp Number"]}|${modifiedData["UOM"]}`,
+      `ZIN|${modifiedData["Location ID"]}^150 PERRY ROAD SJB|||||EA|CA|||||N|||||||||1|||||||||||${modifiedData["Vendor Name"]}`,
+    ];
+
+    // Only include ZIA segment if usePeopleSoft is false
+    if (!usePeopleSoft) {
+      baseLines.push(`ZIA|${modifiedData["Org Item ID"]}|${modifiedData["Corp Number"]}^${modifiedData["Corp Name"]}||${modifiedData["Expense Code Number"]}^${modifiedData["Expense Code Name"]}|||`);
+    }
+
+    blocks.push(baseLines.join("\r\n"));
+  }
+  return blocks.join("\r\n").split("\r\n");
+}
+
 export function formatAsX12(data: DataType): string[] {
   if ("Action" in data) {
-    // This is contract data
     const contractData = data as ContractDataType
-    // Format the data into X12 850 format (simplified example)
     const lines = [
       `ISA*00*          *00*          *ZZ*SENDER         *ZZ*RECEIVER       *210101*1200*U*00401*000000001*0*P*`,
       `GS*PO*SENDER*RECEIVER*20210101*1200*1*X*004010`,
