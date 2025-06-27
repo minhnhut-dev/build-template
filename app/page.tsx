@@ -153,7 +153,7 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* <div
+              <div
                 className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition-all cursor-pointer group"
                 onClick={() => router.push("/poh")}
               >
@@ -172,7 +172,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
               <div
                 className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition-all cursor-pointer group"
                 onClick={() => router.push("/item-master")}
@@ -211,7 +210,7 @@ export default function Home() {
                     <span className="text-xs py-1 px-2 bg-amber-100 text-amber-700 rounded-full">{animatedStats.invoices} open</span>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
 
