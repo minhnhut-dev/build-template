@@ -2094,21 +2094,18 @@ export namespace Prisma {
 
   export type FileBuildMinAggregateOutputType = {
     id: number | null
-    fileName: string | null
     numbers_created: number | null
     fileTypeId: number | null
   }
 
   export type FileBuildMaxAggregateOutputType = {
     id: number | null
-    fileName: string | null
     numbers_created: number | null
     fileTypeId: number | null
   }
 
   export type FileBuildCountAggregateOutputType = {
     id: number
-    fileName: number
     numbers_created: number
     fileTypeId: number
     _all: number
@@ -2129,21 +2126,18 @@ export namespace Prisma {
 
   export type FileBuildMinAggregateInputType = {
     id?: true
-    fileName?: true
     numbers_created?: true
     fileTypeId?: true
   }
 
   export type FileBuildMaxAggregateInputType = {
     id?: true
-    fileName?: true
     numbers_created?: true
     fileTypeId?: true
   }
 
   export type FileBuildCountAggregateInputType = {
     id?: true
-    fileName?: true
     numbers_created?: true
     fileTypeId?: true
     _all?: true
@@ -2237,7 +2231,6 @@ export namespace Prisma {
 
   export type FileBuildGroupByOutputType = {
     id: number
-    fileName: string
     numbers_created: number
     fileTypeId: number
     _count: FileBuildCountAggregateOutputType | null
@@ -2263,7 +2256,6 @@ export namespace Prisma {
 
   export type FileBuildSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fileName?: boolean
     numbers_created?: boolean
     fileTypeId?: boolean
     fileType?: boolean | FileTypeDefaultArgs<ExtArgs>
@@ -2271,7 +2263,6 @@ export namespace Prisma {
 
   export type FileBuildSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fileName?: boolean
     numbers_created?: boolean
     fileTypeId?: boolean
     fileType?: boolean | FileTypeDefaultArgs<ExtArgs>
@@ -2279,7 +2270,6 @@ export namespace Prisma {
 
   export type FileBuildSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    fileName?: boolean
     numbers_created?: boolean
     fileTypeId?: boolean
     fileType?: boolean | FileTypeDefaultArgs<ExtArgs>
@@ -2287,12 +2277,11 @@ export namespace Prisma {
 
   export type FileBuildSelectScalar = {
     id?: boolean
-    fileName?: boolean
     numbers_created?: boolean
     fileTypeId?: boolean
   }
 
-  export type FileBuildOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileName" | "numbers_created" | "fileTypeId", ExtArgs["result"]["fileBuild"]>
+  export type FileBuildOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "numbers_created" | "fileTypeId", ExtArgs["result"]["fileBuild"]>
   export type FileBuildInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     fileType?: boolean | FileTypeDefaultArgs<ExtArgs>
   }
@@ -2310,7 +2299,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      fileName: string
       numbers_created: number
       fileTypeId: number
     }, ExtArgs["result"]["fileBuild"]>
@@ -2738,7 +2726,6 @@ export namespace Prisma {
    */
   interface FileBuildFieldRefs {
     readonly id: FieldRef<"FileBuild", 'Int'>
-    readonly fileName: FieldRef<"FileBuild", 'String'>
     readonly numbers_created: FieldRef<"FileBuild", 'Int'>
     readonly fileTypeId: FieldRef<"FileBuild", 'Int'>
   }
@@ -3180,7 +3167,6 @@ export namespace Prisma {
 
   export const FileBuildScalarFieldEnum: {
     id: 'id',
-    fileName: 'fileName',
     numbers_created: 'numbers_created',
     fileTypeId: 'fileTypeId'
   };
@@ -3313,7 +3299,6 @@ export namespace Prisma {
     OR?: FileBuildWhereInput[]
     NOT?: FileBuildWhereInput | FileBuildWhereInput[]
     id?: IntFilter<"FileBuild"> | number
-    fileName?: StringFilter<"FileBuild"> | string
     numbers_created?: IntFilter<"FileBuild"> | number
     fileTypeId?: IntFilter<"FileBuild"> | number
     fileType?: XOR<FileTypeScalarRelationFilter, FileTypeWhereInput>
@@ -3321,7 +3306,6 @@ export namespace Prisma {
 
   export type FileBuildOrderByWithRelationInput = {
     id?: SortOrder
-    fileName?: SortOrder
     numbers_created?: SortOrder
     fileTypeId?: SortOrder
     fileType?: FileTypeOrderByWithRelationInput
@@ -3332,7 +3316,6 @@ export namespace Prisma {
     AND?: FileBuildWhereInput | FileBuildWhereInput[]
     OR?: FileBuildWhereInput[]
     NOT?: FileBuildWhereInput | FileBuildWhereInput[]
-    fileName?: StringFilter<"FileBuild"> | string
     numbers_created?: IntFilter<"FileBuild"> | number
     fileTypeId?: IntFilter<"FileBuild"> | number
     fileType?: XOR<FileTypeScalarRelationFilter, FileTypeWhereInput>
@@ -3340,7 +3323,6 @@ export namespace Prisma {
 
   export type FileBuildOrderByWithAggregationInput = {
     id?: SortOrder
-    fileName?: SortOrder
     numbers_created?: SortOrder
     fileTypeId?: SortOrder
     _count?: FileBuildCountOrderByAggregateInput
@@ -3355,7 +3337,6 @@ export namespace Prisma {
     OR?: FileBuildScalarWhereWithAggregatesInput[]
     NOT?: FileBuildScalarWhereWithAggregatesInput | FileBuildScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"FileBuild"> | number
-    fileName?: StringWithAggregatesFilter<"FileBuild"> | string
     numbers_created?: IntWithAggregatesFilter<"FileBuild"> | number
     fileTypeId?: IntWithAggregatesFilter<"FileBuild"> | number
   }
@@ -3404,46 +3385,39 @@ export namespace Prisma {
   }
 
   export type FileBuildCreateInput = {
-    fileName: string
     numbers_created: number
     fileType: FileTypeCreateNestedOneWithoutBuildsInput
   }
 
   export type FileBuildUncheckedCreateInput = {
     id?: number
-    fileName: string
     numbers_created: number
     fileTypeId: number
   }
 
   export type FileBuildUpdateInput = {
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
     fileType?: FileTypeUpdateOneRequiredWithoutBuildsNestedInput
   }
 
   export type FileBuildUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
     fileTypeId?: IntFieldUpdateOperationsInput | number
   }
 
   export type FileBuildCreateManyInput = {
     id?: number
-    fileName: string
     numbers_created: number
     fileTypeId: number
   }
 
   export type FileBuildUpdateManyMutationInput = {
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
   }
 
   export type FileBuildUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
     fileTypeId?: IntFieldUpdateOperationsInput | number
   }
@@ -3564,7 +3538,6 @@ export namespace Prisma {
 
   export type FileBuildCountOrderByAggregateInput = {
     id?: SortOrder
-    fileName?: SortOrder
     numbers_created?: SortOrder
     fileTypeId?: SortOrder
   }
@@ -3577,14 +3550,12 @@ export namespace Prisma {
 
   export type FileBuildMaxOrderByAggregateInput = {
     id?: SortOrder
-    fileName?: SortOrder
     numbers_created?: SortOrder
     fileTypeId?: SortOrder
   }
 
   export type FileBuildMinOrderByAggregateInput = {
     id?: SortOrder
-    fileName?: SortOrder
     numbers_created?: SortOrder
     fileTypeId?: SortOrder
   }
@@ -3750,13 +3721,11 @@ export namespace Prisma {
   }
 
   export type FileBuildCreateWithoutFileTypeInput = {
-    fileName: string
     numbers_created: number
   }
 
   export type FileBuildUncheckedCreateWithoutFileTypeInput = {
     id?: number
-    fileName: string
     numbers_created: number
   }
 
@@ -3791,7 +3760,6 @@ export namespace Prisma {
     OR?: FileBuildScalarWhereInput[]
     NOT?: FileBuildScalarWhereInput | FileBuildScalarWhereInput[]
     id?: IntFilter<"FileBuild"> | number
-    fileName?: StringFilter<"FileBuild"> | string
     numbers_created?: IntFilter<"FileBuild"> | number
     fileTypeId?: IntFilter<"FileBuild"> | number
   }
@@ -3836,24 +3804,20 @@ export namespace Prisma {
 
   export type FileBuildCreateManyFileTypeInput = {
     id?: number
-    fileName: string
     numbers_created: number
   }
 
   export type FileBuildUpdateWithoutFileTypeInput = {
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
   }
 
   export type FileBuildUncheckedUpdateWithoutFileTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
   }
 
   export type FileBuildUncheckedUpdateManyWithoutFileTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fileName?: StringFieldUpdateOperationsInput | string
     numbers_created?: IntFieldUpdateOperationsInput | number
   }
 

@@ -61,6 +61,26 @@ export type IMDataType = {
   "Location ID": string
 }
 
-export type DataType = ContractDataType | PODataType | IMDataType
+export type InvoiceDataType = {
+  "INV Date": string
+  "Invoice ID": string
+  "INV Number": string
+  "Corp Number": string
+  "Cost Center": string
+  "Expense Code": string
+  "Vendor Number": string
+  "Vendor Name": string
+  "PO Line Number": string
+  "PO ID DB": string
+  "PO Number": string
+  "INV Status": string
+  "INV Line Number": string
+  "INV Line ID": string
+  "INV Line Desc": string
+  "UOM": string
+  "Org Item ID": string
+}
+
+export type DataType = ContractDataType | PODataType | IMDataType | InvoiceDataType
 
 export type SectionType = "Home" |"Contract" | "POH" | "Item Master" | "Invoice"

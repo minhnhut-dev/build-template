@@ -1,4 +1,4 @@
-import type { ContractDataType, PODataType, IMDataType } from "./types"
+import type { ContractDataType, PODataType, IMDataType, InvoiceDataType } from "./types"
 
 export const contractData: ContractDataType = {
   Action: "MAD",
@@ -61,4 +61,24 @@ export const itemMasterData: IMDataType = {
   "Expense Code Number": "70290",
   "Expense Code Name": "CONTRACT PERSONNEL",
   "Location ID": "2087"
+}
+
+export const invoiceData: InvoiceDataType = {
+  "INV Date": "20250210000000",
+  "Invoice ID": "INV_ID_001",
+  "INV Number": "INV_NUM_001",
+  "Corp Number": "80100",
+  "Cost Center": "80100",
+  "Expense Code": "80100",
+  "Vendor Number": "ZIMMUS-P",
+  "Vendor Name": "ZIMMER US INC",
+  "PO Line Number": "1",
+  "PO ID DB": "100",
+  "PO Number": "PO_NUM_001",
+  "INV Status": "2",
+  "INV Line Number": "INV_NUM_001",
+  "INV Line ID": "1",
+  "INV Line Desc": "INV_LINE_DESC_OK",
+  "UOM": "EA",
+  "Org Item ID": "10000232"
 }
