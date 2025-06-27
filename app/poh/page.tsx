@@ -24,6 +24,9 @@ export default function PohPage() {
             case "Item Master":
                 router.push("/item-master");
                 break;
+            case "Invoice":
+                router.push("/invoice");
+                break;
             case "POH":
                 router.push("/poh");
                 break;

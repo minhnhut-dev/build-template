@@ -7,7 +7,6 @@ import { SectionType } from "@/lib/types"
 import ItemMasterTable from "./Components/ItemMasterTable"
 import { cn } from "@/lib/utils"
 import { itemMasterData } from "@/lib/data"
-import { formatAsItemMaster } from "@/lib/formatter";
 
 
 export default function ItemMasterPage() {
